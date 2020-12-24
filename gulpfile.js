@@ -17,6 +17,7 @@ var runSequence = require('run-sequence');
 var cssnano = require('gulp-cssnano');
 var pkg = require('./package.json');
 var sourcemaps = require('gulp-sourcemaps');
+var port = 8085;
 
 
 var banner = ['/**',
@@ -169,7 +170,8 @@ gulp.task('watch', ['copy-local-specs'], function() {
 gulp.task('connect', function() {
   connect.server({
     root: 'dist',
-    livereload: true
+    livereload: true,
+	  port: port
   });
 });
 

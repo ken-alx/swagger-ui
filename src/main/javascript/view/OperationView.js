@@ -14,12 +14,18 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
   },
 
   initialize: function(opts) {
-    opts = opts || {};
+	  opts = opts || {};
+  	var model = opts.model;
+	  var models = model.models;
+	  var path = model.path;
+	  var isAPISpec = model.operation.isAPISpec;
+
     this.router = opts.router;
     this.auths = opts.auths;
     this.parentId = this.model.parentId;
     this.nickname = this.model.nickname;
     this.model.encodedParentId = encodeURIComponent(this.parentId);
+    this.model.isAPISpec = isAPISpec;
 
     if (opts.swaggerOptions) {
       this.model.defaultRendering = opts.swaggerOptions.defaultModelRendering;
@@ -178,6 +184,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       for (key in successResponse) {
         value = successResponse[key];
         this.model.successCode = key;
+	      var isAPISpec = this.model.operation.isAPISpec;
         if (typeof value === 'object' && typeof value.createJSONSample === 'function') {
           this.model.successDescription = value.description;
           this.model.headers = this.parseResponseHeaders(value.headers);
@@ -185,7 +192,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
             sampleJSON: isJSON ? JSON.stringify(SwaggerUi.partials.signature.createJSONSample(value), void 0, 2) : false,
             isParam: false,
             sampleXML: isXML ? SwaggerUi.partials.signature.createXMLSample(value.name, value.definition, value.models) : false,
-            signature: SwaggerUi.partials.signature.getModelSignature(value.name, value.definition, value.models, value.modelPropertyMacro)
+            signature: SwaggerUi.partials.signature.getModelSignature(value.name, value.definition, value.models, value.modelPropertyMacro, isAPISpec)
           };
         } else {
           signatureModel = {

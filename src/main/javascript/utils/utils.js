@@ -76,5 +76,16 @@ window.SwaggerUi.utils = {
         html = html.replace(/(on\w+="[^"]*")*(on\w+='[^']*')*(on\w+=\w*\(\w*\))*/gi, '');
 
         return html;
-    }
+    },
+		//首字母转大写
+		firstUpperCase: function(str){
+			str = str.replace(str[0],str[0].toUpperCase());
+			return str;
+		},
+		//下划线转驼峰
+		underLineToCamel: function(str){
+			return str.replace(/\_(\w)/g, function(all, letter){
+				return letter.toUpperCase();
+			});
+		}
 };

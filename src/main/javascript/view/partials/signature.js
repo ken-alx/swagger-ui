@@ -110,10 +110,25 @@ SwaggerUi.partials.signature = (function () {
   };
 
   // copy-pasted from swagger-js
-  var getModelSignature = function (name, schema, models, modelPropertyMacro) {
+	// apiSpec API规范
+  var getModelSignature = function (name, schema, models, modelPropertyMacro, apiSpec) {
+	  if(apiSpec != undefined && apiSpec){
+		  //规范处理
+		  var prop = schema["properties"];
+		  if(prop){
+			  var newProperties = {};
+		  	for(var key in prop){
+				  var value = prop[key];
+					key = SwaggerUi.utils.underLineToCamel(key);
+					key = SwaggerUi.utils.firstUpperCase(key);
+					newProperties[key] = value;
+			  }
+			  schema.properties = newProperties;
+		  }
+	  }
+	  console.log("Signature Handler:", schema["properties"]);
     var strongOpen = '<span class="strong">';
     var strongClose = '</span>';
-
     var optionHtml = function (label, value) {
       return '<tr><td class="optionName">' + label + ':</td><td>' + value + '</td></tr>';
     };

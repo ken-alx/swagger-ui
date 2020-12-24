@@ -229,6 +229,26 @@
   border-collapse: collapse;
   border-spacing: 0;
 }
+.swagger-section .swagger-ui-wrap table .param-name-col {
+  width: 100px;
+  max-width: 100px;
+}
+.swagger-section .swagger-ui-wrap table .param-value-col {
+  width: 310px;
+  max-width: 310px;
+}
+.swagger-section .swagger-ui-wrap table .param-description-col {
+  width: 200px;
+  max-width: 200px;
+}
+.swagger-section .swagger-ui-wrap table .param-type-col {
+  width: 100px;
+  max-width: 100px;
+}
+.swagger-section .swagger-ui-wrap table .param-data-type-col {
+  width: 220px;
+  max-width: 230px;
+}
 .swagger-section .swagger-ui-wrap table thead tr th {
   padding: 5px;
   font-size: 0.9em;
@@ -1501,4 +1521,84 @@
 .swagger-section .error {
   outline-color: #cc0000;
   background-color: #f2dede;
+}
+.swagger-ui-wrap .logo-desc {
+  margin-left: 20px;
+  width: 200px;
+  display: inline-block;
+}
+.swagger-ui-wrap .logo-desc span {
+  display: block;
+  font-size: 20px;
+}
+.swagger-ui-wrap .logo-desc span:nth-child(2) {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 .apiSpec-tag {
+  font-family: "Droid Sans", sans-serif;
+  background-color: #89bf04;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: bolder;
+  padding: 2px 5px;
+  position: absolute;
+  margin-top: 4px;
+}
+.apiSpec-tag-wrapper {
+  margin-left: 20px;
+}
+.copy-right-wrapper {
+  font-family: "Droid Sans", sans-serif;
+  width: 100%;
+  background-color: #F2F2F2;
+}
+.copy-right-wrapper .copy-right {
+  min-width: 760px;
+  max-width: 960px;
+  margin: 50px auto;
+  padding: 10px 0;
+  font-size: 13px;
+  width: 100%;
+  color: #666666;
+}
+.copy-right-wrapper .copy-right .ext-desc {
+  padding: 10px 0 20px;
+}
+.copy-right-wrapper .copy-right .ext-desc .desc-asx-tag {
+  height: 12px;
+  font-size: 8px;
+  background-color: #89bf04;
+  color: #FFFFFF;
+  padding: 2px 3px;
+}
+.copy-right-wrapper .copy-right .part1 {
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+}
+.copy-right-wrapper .copy-right .part1 .info-detail span {
+  display: block;
+}
+.copy-right-wrapper .copy-right .part1 .info-detail:nth-child(2) {
+  margin-left: 50px;
+  text-decoration: none;
+  color: #666666;
+}
+.copy-right-wrapper .copy-right .part2 {
+  height: 30px;
+  line-height: 30px;
+}
+.copy-right-wrapper .copy-right .part2 a {
+  text-decoration: none;
+  color: #666666;
+}
+.copy-right-wrapper .copy-right .part2 a:focus {
+  color: #89bf04;
+}
+.copy-right-wrapper .copy-right .part2 a:hover {
+  color: #89bf04;
+}
+.copy-right-wrapper .copy-right .part2 .power {
+  margin-left: 50px;
 }

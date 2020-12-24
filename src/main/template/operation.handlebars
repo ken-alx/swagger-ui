@@ -1,6 +1,7 @@
   <ul class='operations' >
     <li class='{{{escape method}}} operation' id='{{{escape parentId}}}_{{{escape nickname}}}'>
       <div class='heading'>
+        {{!--    头部    --}}
         <h3>
           <span class='http_method'>
           <a href='#!/{{sanitize encodedParentId}}/{{sanitize nickname}}' class="toggleOperation">{{{escape method}}}</a>
@@ -8,6 +9,11 @@
           <span class='path'>
           <a href='#!/{{sanitize encodedParentId}}/{{sanitize nickname}}' class="toggleOperation {{#if deprecated}}deprecated{{/if}}">{{{escape path}}}</a>
           </span>
+          {{#if isAPISpec}}
+          <view class='apiSpec-tag-wrapper'>
+            <span class='apiSpec-tag'>ASX</span>
+          </view>
+          {{/if}}
         </h3>
         <ul class='options'>
           {{#if showOperationIds}}
