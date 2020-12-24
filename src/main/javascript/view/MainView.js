@@ -12,6 +12,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
     var sorterOption, sorterFn, key, value;
     opts = opts || {};
 
+    console.log(opts);
     this.router = opts.router;
 
     // Sort APIs
