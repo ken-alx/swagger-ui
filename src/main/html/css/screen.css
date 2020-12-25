@@ -1535,18 +1535,20 @@
   font-size: 12px;
   margin-top: 5px;
 }
-.swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 .apiSpec-tag {
-  font-family: "Droid Sans", sans-serif;
-  background-color: #89bf04;
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: bolder;
-  padding: 2px 5px;
-  position: absolute;
-  margin-top: 4px;
+.swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 span.http_method a {
+  width: 65px;
 }
-.apiSpec-tag-wrapper {
-  margin-left: 20px;
+.http_method {
+  position: relative;
+}
+.http_method .apiSpec-tag {
+  position: absolute;
+  margin-left: -28px;
+  margin-top: 3px;
+  width: 25px;
+  height: 25px;
+  background-image: url("../images/asx-tag.png");
+  background-size: 100% 100%;
 }
 .copy-right-wrapper {
   font-family: "Droid Sans", sans-serif;
@@ -1556,14 +1558,15 @@
 .copy-right-wrapper .copy-right {
   min-width: 760px;
   max-width: 960px;
-  margin: 50px auto;
+  margin: 50px auto 0;
   padding: 10px 0;
-  font-size: 13px;
+  font-size: 12px;
   width: 100%;
   color: #666666;
 }
 .copy-right-wrapper .copy-right .ext-desc {
   padding: 10px 0 20px;
+  border-bottom: 1px solid #d2d2d7;
 }
 .copy-right-wrapper .copy-right .ext-desc .desc-asx-tag {
   height: 12px;
@@ -1572,10 +1575,16 @@
   color: #FFFFFF;
   padding: 2px 3px;
 }
+.copy-right-wrapper .copy-right .ext-desc > div {
+  height: 22px;
+  line-height: 22px;
+}
 .copy-right-wrapper .copy-right .part1 {
   display: flex;
-  height: 30px;
-  line-height: 30px;
+  height: 22px;
+  line-height: 22px;
+  margin-top: 10px;
+  color: #86868b;
 }
 .copy-right-wrapper .copy-right .part1 .info-detail span {
   display: block;
@@ -1583,11 +1592,11 @@
 .copy-right-wrapper .copy-right .part1 .info-detail:nth-child(2) {
   margin-left: 50px;
   text-decoration: none;
-  color: #666666;
+  color: #86868b;
 }
 .copy-right-wrapper .copy-right .part2 {
-  height: 30px;
-  line-height: 30px;
+  height: 22px;
+  line-height: 22px;
 }
 .copy-right-wrapper .copy-right .part2 a {
   text-decoration: none;

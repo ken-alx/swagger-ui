@@ -4,16 +4,14 @@
         {{!--    头部    --}}
         <h3>
           <span class='http_method'>
-          <a href='#!/{{sanitize encodedParentId}}/{{sanitize nickname}}' class="toggleOperation">{{{escape method}}}</a>
+              <a href='#!/{{sanitize encodedParentId}}/{{sanitize nickname}}' class="toggleOperation">{{{escape method}}}</a>
+              {{#if isAPISpec}}
+              <view class='apiSpec-tag'></view>
+              {{/if}}
           </span>
           <span class='path'>
           <a href='#!/{{sanitize encodedParentId}}/{{sanitize nickname}}' class="toggleOperation {{#if deprecated}}deprecated{{/if}}">{{{escape path}}}</a>
           </span>
-          {{#if isAPISpec}}
-          <view class='apiSpec-tag-wrapper'>
-            <span class='apiSpec-tag'>ASX</span>
-          </view>
-          {{/if}}
         </h3>
         <ul class='options'>
           {{#if showOperationIds}}
