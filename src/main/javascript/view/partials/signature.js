@@ -115,16 +115,7 @@ SwaggerUi.partials.signature = (function () {
 	  if(apiSpec != undefined && apiSpec){
 		  //规范处理
 		  var prop = schema["properties"];
-		  if(prop){
-			  var newProperties = {};
-		  	for(var key in prop){
-				  var value = prop[key];
-					key = SwaggerUi.utils.underLineToCamel(key);
-					key = SwaggerUi.utils.firstUpperCase(key);
-					newProperties[key] = value;
-			  }
-			  schema.properties = newProperties;
-		  }
+		  schema.properties = SwaggerUi.utils.objectToAPISpec(prop);
 	  }
 	  console.log("Signature Handler:", schema["properties"]);
     var strongOpen = '<span class="strong">';

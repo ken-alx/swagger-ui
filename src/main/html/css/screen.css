@@ -1594,6 +1594,16 @@
   text-decoration: none;
   color: #86868b;
 }
+.copy-right-wrapper .copy-right .part1 a {
+  text-decoration: none;
+  color: #666666;
+}
+.copy-right-wrapper .copy-right .part1 a:focus {
+  color: #89bf04;
+}
+.copy-right-wrapper .copy-right .part1 a:hover {
+  color: #89bf04;
+}
 .copy-right-wrapper .copy-right .part2 {
   height: 22px;
   line-height: 22px;

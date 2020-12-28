@@ -185,11 +185,20 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         value = successResponse[key];
         this.model.successCode = key;
 	      var isAPISpec = this.model.operation.isAPISpec;
+	      if(this.model.path == '/news/stock/batch'){
+		      console.log(this.model);
+		      console.log(value.name, value.definition);
+	      }
+
         if (typeof value === 'object' && typeof value.createJSONSample === 'function') {
           this.model.successDescription = value.description;
           this.model.headers = this.parseResponseHeaders(value.headers);
+
+          //API规范处理
+          var sampleJson = SwaggerUi.partials.signature.createJSONSample(value);
+	        sampleJson = SwaggerUi.utils.objectToAPISpec(sampleJson);
           signatureModel = {
-            sampleJSON: isJSON ? JSON.stringify(SwaggerUi.partials.signature.createJSONSample(value), void 0, 2) : false,
+            sampleJSON: isJSON ? JSON.stringify( sampleJson, void 0, 2) : false,
             isParam: false,
             sampleXML: isXML ? SwaggerUi.partials.signature.createXMLSample(value.name, value.definition, value.models) : false,
             signature: SwaggerUi.partials.signature.getModelSignature(value.name, value.definition, value.models, value.modelPropertyMacro, isAPISpec)

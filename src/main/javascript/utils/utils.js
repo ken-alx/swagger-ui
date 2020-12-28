@@ -87,5 +87,20 @@ window.SwaggerUi.utils = {
 			return str.replace(/\_(\w)/g, function(all, letter){
 				return letter.toUpperCase();
 			});
+		},
+		//对象转规范
+		objectToAPISpec: function(obj){
+    	if(obj && typeof obj == 'object'){
+		    var newProperties = {};
+		    for(var key in obj){
+			    var value = obj[key];
+			    key = SwaggerUi.utils.underLineToCamel(key);
+			    key = SwaggerUi.utils.firstUpperCase(key);
+			    newProperties[key] = value;
+		    }
+		    return newProperties;
+	    }else{
+    		return obj;
+	    }
 		}
 };
