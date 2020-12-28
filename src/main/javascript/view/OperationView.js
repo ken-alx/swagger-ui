@@ -185,10 +185,6 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         value = successResponse[key];
         this.model.successCode = key;
 	      var isAPISpec = this.model.operation.isAPISpec;
-	      if(this.model.path == '/news/stock/batch'){
-		      console.log(this.model);
-		      console.log(value.name, value.definition);
-	      }
 
         if (typeof value === 'object' && typeof value.createJSONSample === 'function') {
           this.model.successDescription = value.description;
@@ -197,11 +193,13 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
           //API规范处理
           var sampleJson = SwaggerUi.partials.signature.createJSONSample(value);
 	        sampleJson = SwaggerUi.utils.objectToAPISpec(sampleJson);
-          signatureModel = {
+
+	        var signature = SwaggerUi.partials.signature.getModelSignature(value.name, value.definition, value.models, value.modelPropertyMacro, isAPISpec);
+	        signatureModel = {
             sampleJSON: isJSON ? JSON.stringify( sampleJson, void 0, 2) : false,
             isParam: false,
             sampleXML: isXML ? SwaggerUi.partials.signature.createXMLSample(value.name, value.definition, value.models) : false,
-            signature: SwaggerUi.partials.signature.getModelSignature(value.name, value.definition, value.models, value.modelPropertyMacro, isAPISpec)
+            signature: signature
           };
         } else {
           signatureModel = {
@@ -291,7 +289,6 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       });
       this.$('.authorize-wrapper').append(this.authView.render().el);
     }
-
     this.showSnippet();
     return this;
   },
@@ -381,7 +378,8 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     var statusCodeView = new SwaggerUi.Views.StatusCodeView({
       model: statusCode,
       tagName: 'tr',
-      router: this.router
+      router: this.router,
+	    isAPISpec: this.model.isAPISpec
     });
     $('.operation-status', $(this.el)).append(statusCodeView.render().el);
   },

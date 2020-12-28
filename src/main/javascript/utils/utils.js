@@ -90,10 +90,13 @@ window.SwaggerUi.utils = {
 		},
 		//对象转规范
 		objectToAPISpec: function(obj){
-    	if(obj && typeof obj == 'object'){
+    	if(obj && (typeof obj == 'object' || obj instanceof Object)){
 		    var newProperties = {};
 		    for(var key in obj){
 			    var value = obj[key];
+			    if(value && (typeof value == 'array' || value instanceof Array)){
+			    	value = SwaggerUi.utils.arrayToAPISpec(value);
+			    }
 			    key = SwaggerUi.utils.underLineToCamel(key);
 			    key = SwaggerUi.utils.firstUpperCase(key);
 			    newProperties[key] = value;
@@ -101,6 +104,22 @@ window.SwaggerUi.utils = {
 		    return newProperties;
 	    }else{
     		return obj;
+	    }
+		},
+		//数组转规范
+		arrayToAPISpec: function(array){
+    	if(array && array.length > 0){
+    		var newArray = [];
+    		for (var i=0; i < array.length; i++){
+    			var item = array[i];
+			    if(item && (typeof item == 'object' || item instanceof Object)){
+				    item = SwaggerUi.utils.objectToAPISpec(item);
+			    }
+			    newArray.push(item);
+		    }
+		    return newArray;
+	    }else{
+    		return array;
 	    }
 		}
 };

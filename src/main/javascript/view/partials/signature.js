@@ -173,7 +173,7 @@ SwaggerUi.partials.signature = (function () {
     var inlineModels = 0;
 
     // Generate current HTML
-    var html = processModel(schema, name);
+    var html = processModel(schema, name, apiSpec);
 
     // Generate references HTML
     while (_.keys(references).length > 0) {
@@ -186,7 +186,7 @@ SwaggerUi.partials.signature = (function () {
         if (!seenModel) {
           seenModels.push(name);
 
-          html += '<br />' + processModel(schema, name);
+          html += '<br />' + processModel(schema, name, apiSpec);
         }
       });
       /* jshint ignore:end */
@@ -359,7 +359,7 @@ SwaggerUi.partials.signature = (function () {
       return html;
     }
 
-    function processModel(schema, name) {
+    function processModel(schema, name, apiSpec) {
       var type = schema.type || 'object';
       var isArray = schema.type === 'array';
       var html = strongOpen + name + ' ' + (isArray ? '[' : '{') + strongClose;
@@ -415,6 +415,10 @@ SwaggerUi.partials.signature = (function () {
               var propertyIsRequired = (_.indexOf(schema.required, name) >= 0);
               var cProperty = _.cloneDeep(property);
 
+              if(apiSpec){
+	              name = SwaggerUi.utils.underLineToCamel(name);
+	              name = SwaggerUi.utils.firstUpperCase(name);
+              }
               var requiredClass = propertyIsRequired ? 'required' : '';
               var html = '<span class="propName ' + requiredClass + '">' + name + '</span> (';
               var model;
@@ -463,6 +467,7 @@ SwaggerUi.partials.signature = (function () {
     }
 
   };
+  //截止 ==>
 
   // copy-pasted from swagger-js
   var schemaToJSON = function (schema, models, modelsToIgnore, modelPropertyMacro) {
@@ -589,7 +594,7 @@ SwaggerUi.partials.signature = (function () {
   };
 
   // copy-pasted from swagger-js
-  var getParameterModelSignature = function (type, definitions) {
+  var getParameterModelSignature = function (type, definitions, isAPISpec) {
       var isPrimitive, listType;
 
       if (type instanceof Array) {
@@ -624,9 +629,9 @@ SwaggerUi.partials.signature = (function () {
         }
       } else {
         if (listType) {
-          return 'Array[' + getModelSignature(type.name, type.definition, type.models, type.modelPropertyMacro) + ']';
+          return 'Array[' + getModelSignature(type.name, type.definition, type.models, type.modelPropertyMacro, isAPISpec) + ']';
         } else {
-          return getModelSignature(type.name, type.definition, type.models, type.modelPropertyMacro);
+          return getModelSignature(type.name, type.definition, type.models, type.modelPropertyMacro, isAPISpec);
         }
       }
   };
